@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>String and Regex</title>
+</head>
+<body>
+
+<h2>String & Regex Demo</h2>
+
+<input type="text" id="email" placeholder="Enter email">
+<button onclick="validateEmail()">Validate Email</button>
+
+<br><br>
+
+<textarea id="text" rows="5" cols="40"
+placeholder="Enter some text"></textarea>
+
+<br>
+
+<button onclick="analyzeText()">Analyze Text</button>
+
+<p id="result"></p>
+
+<script>
+
+    // Email validation using Regex
+    function validateEmail() {
+
+        let email = document.getElementById("email").value;
+
+        let pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (pattern.test(email)) {
+            document.getElementById("result").innerHTML =
+                "Valid Email";
+        } else {
+            document.getElementById("result").innerHTML =
+                "Invalid Email";
+        }
+    }
+
+
+    // Text analysis
+    function analyzeText() {
+
+        let text = document.getElementById("text").value;
+
+        // String functions
+        let characters = text.length;
+
+        let words = text.trim().split(/\s+/);
+
+        let wordCount = text.trim() === "" ? 0 : words.length;
+
+        // Regex for finding numbers
+        let numbers = text.match(/\d+/g);
+
+        document.getElementById("result").innerHTML =
+            "Characters: " + characters +
+            "<br>Words: " + wordCount +
+            "<br>Numbers found: " +
+            (numbers ? numbers.join(", ") : "None");
+    }
+
+</script>
+
+</body>
+</html>
